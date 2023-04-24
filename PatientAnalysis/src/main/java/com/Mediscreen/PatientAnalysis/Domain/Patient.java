@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Patient {
     private Long id;
     private String firstName;
@@ -18,6 +19,8 @@ public class Patient {
     private String address;
     private List<Note> notes = new ArrayList<>();
     private PatientStatusDto patientStatusDto;
+
+    private String patientStatus;
 
     public Patient(Long id, String firstName, String lastName, Date birthDate, String gender, String phoneNumber, String address, List<Note> notes, PatientStatusDto patientStatusDto) {
         this.id = id;
@@ -104,5 +107,13 @@ public class Patient {
 
     public void setPatientStatusDto(PatientStatusDto patientStatusDto) {
         this.patientStatusDto = patientStatusDto;
+    }
+
+    public String getPatientStatus() {
+        return patientStatus;
+    }
+
+    public void setPatientStatus(String patientStatus) {
+        this.patientStatus = patientStatus;
     }
 }
