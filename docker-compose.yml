@@ -10,30 +10,11 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     ports:
-      - "3307:3306"
+      - "3306:3306"
     expose:
-      - "3307"
+      - "3306"
     networks:
-      - web-server
-    restart: always
-
-  patient:
-#    image : p9patient
-    build :
-      context: Projet9
-      dockerfile: Dockerfile
-    container_name: projet9_patient
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mediscreen_db_patient?autoReconnect=true&useSSL=false&serverTimezone=UTC
-      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
-    networks:
-      - web-server
-    ports:
-      - "8089:8089"
-    expose:
-      - "8089"
-    depends_on:
-      - mysql
+        - web-server
     restart: always
 
   mongo:
@@ -41,28 +22,68 @@ services:
     image: mongo:latest
     restart: always
     environment:
+      MONGO_INITDB_DATABASE: Projet9Note
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+      MONGODB_PORT: 27017
     networks:
       - web-server
 
-  note:
-#    image: note
+
+
+  patient:
+    image : patientpatient2
+    build :
+      context: ./Projet9
+      dockerfile: Dockerfile
+    container_name: projet9_patient
+    environment:
+      SERVER_PORT: 8089
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: mediscreen_db_patient
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      #SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/mediscreen_db_patient?autoReconnect=true&useSSL=false&serverTimezone=UTC
+      #SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+    networks:
+        - web-server
+    ports:
+      - "8089:8089"
+    depends_on:
+      - mysql
+    restart: always
+
+  front:
+    container_name: front
+    image: p9gfrontv4
     build:
-      context: Note
+      context: ./p9front
+      dockerfile: Dockerfile
+    networks:
+      - web-server
+    ports:
+      - "3000:80"
+    restart: always
+
+
+  note:
+    image: notenote
+    build:
+      context: ./Note
       dockerfile: Dockerfile
     container_name: projet9_note
     networks:
-      - web-server
+    - web-server
     ports:
       - "8091:8091"
     depends_on:
       - mongo
 
   patientanlysis:
-#    image: patientanalysis
+    image: analyseanalyse
     build:
-      context: PatientAnalysis
+      context: ./PatientAnalysis
       dockerfile: Dockerfile
     container_name: patient_analysis
     networks:
@@ -72,7 +93,6 @@ services:
     depends_on:
       - patient
       - note
-
 
 networks:
   web-server:

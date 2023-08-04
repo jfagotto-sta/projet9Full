@@ -31,7 +31,9 @@ public class PatientService {
     }
 
     public Patient findByIdSansStatus(long id){
+        System.out.println("tata");
         Patient p =  iPatientRepository.findById(id);
+        System.out.println("toto");
         p.setNotes(noteDtoService.getNotesForPatient(id));
         return p;
 
@@ -60,6 +62,7 @@ public class PatientService {
     }
 
     public Iterable<Patient> findAllPatient(){
+        System.out.println("on est au début de findallpatients");
         Iterable<Patient> patients = iPatientRepository.findAll();
         for (Patient p :patients) {
             try {

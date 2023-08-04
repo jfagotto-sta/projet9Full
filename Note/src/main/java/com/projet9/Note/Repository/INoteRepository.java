@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface INoteRepository extends MongoRepository<Note,Long> {
 
-
     List<Note> findByIdPatient(long id);
 }

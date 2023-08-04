@@ -22,9 +22,10 @@ public class NoteDTOService {
 
     public List<NoteDTO> getNotesForPatient(long idPatient){
 
+        System.out.println("on est au début de get notes");
 
         Client client = ClientBuilder.newClient();
-
+        System.out.println("id " +idPatient);
         String response = client.target("http://localhost:8091/notes/patient/"+idPatient)
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);

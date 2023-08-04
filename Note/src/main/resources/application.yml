@@ -1,0 +1,8 @@
+server:
+  port: '${8091:8091}'
+
+spring:
+  data:
+    mongodb:
+      uri: 'mongodb+srv://root:root@Projet9Note.tvdrlgl.mongodb.net/note'
+      database: 'Pojet9Note'
