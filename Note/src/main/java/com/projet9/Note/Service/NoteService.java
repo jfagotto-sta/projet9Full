@@ -26,7 +26,6 @@ public class NoteService {
     }
 
     public List<Note> findAllNotesForAPatient(long id) {
-        System.out.println("on est dans l'api note");
         return noteRepository.findByIdPatient(id);
     }
 

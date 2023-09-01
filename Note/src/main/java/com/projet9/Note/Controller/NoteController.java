@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin/*(origins="http://localhost:8089")*/
+@CrossOrigin
 public class NoteController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class NoteController {
         return noteService.findAllNotes();}
 
 
-    @DeleteMapping("/delete/note/{id}")
+    @DeleteMapping("/note/delete/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public void deleteNoteById(@PathVariable long id){
        noteService.deleteNote(id);

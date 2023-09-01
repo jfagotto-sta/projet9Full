@@ -10,12 +10,12 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "3307:3306"
     expose:
       - "3306"
     networks:
         - web-server
-    restart: always
+    restart: unless-stopped
 
   mongo:
     container_name: mongodb
@@ -52,19 +52,9 @@ services:
       - "8089:8089"
     depends_on:
       - mysql
-    restart: always
+    restart: unless-stopped
 
-  front:
-    container_name: front
-    image: p9gfrontv4
-    build:
-      context: ./p9front
-      dockerfile: Dockerfile
-    networks:
-      - web-server
-    ports:
-      - "3000:80"
-    restart: always
+
 
 
   note:
@@ -79,6 +69,7 @@ services:
       - "8091:8091"
     depends_on:
       - mongo
+    restart: unless-stopped
 
   patientanlysis:
     image: analyseanalyse
@@ -93,6 +84,23 @@ services:
     depends_on:
       - patient
       - note
+    restart: unless-stopped
+
+  front:
+    container_name: front
+    image: p9gfrontv4
+    build:
+      context: ./p9front
+      dockerfile: Dockerfile
+    networks:
+      - web-server
+    ports:
+      - "3000:80"
+    depends_on:
+      - patient
+      - note
+      - patientanlysis
+    restart: unless-stopped
 
 networks:
   web-server:
