@@ -62,7 +62,6 @@ public class PatientService {
     }
 
     public Iterable<Patient> findAllPatient(){
-        System.out.println("on est au début de findallpatients");
         Iterable<Patient> patients = iPatientRepository.findAll();
         for (Patient p :patients) {
             try {

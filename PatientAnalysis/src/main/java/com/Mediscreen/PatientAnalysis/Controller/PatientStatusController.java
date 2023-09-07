@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin/*(origins={"http://localhost:8089", "http://localhost:3000"})*/
+@CrossOrigin
 public class PatientStatusController {
 
     @Autowired

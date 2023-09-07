@@ -1,6 +1,6 @@
 # Application
 server:
-  port: ?${SERVER_PORT:8089}?
+  port: '8089'
 # Database
 spring:
   jpa:
@@ -16,7 +16,7 @@ spring:
     show-sql: true
     #database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:mediscreen_db_patient}?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3307}/${MYSQL_DATABASE:mediscreen_db_patient}?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:root}
     hikari:

@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 public class PatientStatusDTOService {
 
     public PatientStatusDto getPatientStatus(long idPatient) throws JsonProcessingException {
-        System.out.println("on appel l'api status");
         Client client = ClientBuilder.newClient();
 
-        PatientStatusDto response = client.target("http://localhost:8092/patient/status/" + idPatient)
+        PatientStatusDto response = client.target("http://patientanlysis:8092/patient/status/" + idPatient)
                 .request(MediaType.APPLICATION_JSON)
                 .get(PatientStatusDto.class);
 

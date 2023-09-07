@@ -22,7 +22,6 @@ public class NoteDTOService {
 
     public List<NoteDTO> getNotesForPatient(long idPatient){
 
-        System.out.println("on est au début de get notes");
 
         Client client = ClientBuilder.newClient();
         System.out.println("id " +idPatient);
@@ -41,7 +40,7 @@ public class NoteDTOService {
 
         Client client = ClientBuilder.newClient();
 
-        WebTarget resource = client.target("http://localhost:8091/delete/note/"+idNote);
+        WebTarget resource = client.target("http://localhost:8091/note/delete/"+idNote);
         resource.request().delete(Long.class);
     }
 

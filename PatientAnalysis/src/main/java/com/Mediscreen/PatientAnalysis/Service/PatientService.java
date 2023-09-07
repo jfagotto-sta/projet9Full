@@ -13,7 +13,7 @@ public class PatientService {
     public Patient getPatient(Long id ) {
         Client client = ClientBuilder.newClient();
 
-        Patient response = client.target("http://localhost:8089/patientSansStatus/"+id)
+        Patient response = client.target("http://patient:8089/patientSansStatus/"+id)
                 .request(MediaType.APPLICATION_JSON)
                 .get(Patient.class);
         return response;

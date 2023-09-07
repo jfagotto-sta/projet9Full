@@ -1,4 +1,4 @@
-/*package com.projet9.mediscreen;
+package com.projet9.mediscreen;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,4 +10,4 @@ class ApplicationTests {
 	void contextLoads() {
 	}
 
-}*/
+}

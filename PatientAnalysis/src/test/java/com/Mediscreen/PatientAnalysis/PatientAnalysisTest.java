@@ -42,7 +42,7 @@ public class PatientAnalysisTest {
     }
 
     @Test
-    public void test(){
+    public void CountSymptoms(){
         List<Note> noteList = new ArrayList<>();
 
         Patient patient = new Patient();

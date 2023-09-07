@@ -58,7 +58,7 @@ services:
 
 
   note:
-    image: notenote
+    image: notenote2
     build:
       context: ./Note
       dockerfile: Dockerfile
