@@ -25,7 +25,7 @@ public class NoteDTOService {
 
         Client client = ClientBuilder.newClient();
         System.out.println("id " +idPatient);
-        String response = client.target("http://localhost:8091/notes/patient/"+idPatient)
+        String response = client.target("http://note:8091/notes/patient/"+idPatient)
                 .request(MediaType.APPLICATION_JSON)
                 .get(String.class);
 
@@ -40,7 +40,7 @@ public class NoteDTOService {
 
         Client client = ClientBuilder.newClient();
 
-        WebTarget resource = client.target("http://localhost:8091/note/delete/"+idNote);
+        WebTarget resource = client.target("http://note:8091/note/delete/"+idNote);
         resource.request().delete(Long.class);
     }
 
@@ -48,11 +48,9 @@ public class NoteDTOService {
 
         Client client = ClientBuilder.newClient();
 
-//        Gson gson = new Gson();
-//
-//        gson.toJson(noteDTO);
 
-        WebTarget resource = client.target("http://localhost:8091/note/update");
+
+        WebTarget resource = client.target("http://note:8091/note/update");
         resource.request()
                 .accept(MediaType.APPLICATION_JSON)
                 .put(Entity.json(noteDTO), NoteDTO.class);
@@ -61,7 +59,7 @@ public class NoteDTOService {
     public NoteDTO getNote(long idNote) throws JsonProcessingException {
         Client client = ClientBuilder.newClient();
 
-        NoteDTO response = client.target("http://localhost:8091/note/" + idNote)
+        NoteDTO response = client.target("http://note:8091/note/" + idNote)
                 .request(MediaType.APPLICATION_JSON)
                 .get(NoteDTO.class);
 
@@ -75,7 +73,7 @@ public class NoteDTOService {
         Client client = ClientBuilder.newClient();
 
 
-        WebTarget resource = client.target("http://localhost:8091/note");
+        WebTarget resource = client.target("http://note:8091/note");
         resource.request()
                 .accept(MediaType.APPLICATION_JSON)
                 .post(Entity.json(noteDTO), NoteDTO.class);
