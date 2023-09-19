@@ -29,8 +29,6 @@ services:
     networks:
       - web-server
 
-
-
   patient:
     image : patientpatient2
     build :

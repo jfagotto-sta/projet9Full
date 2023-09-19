@@ -70,6 +70,13 @@ public class NoteController {
 
     @PutMapping(path = "/note/update", consumes= MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code=HttpStatus.OK)
-    public Note updatePatientWithId(@RequestBody Note note) {return noteService.updatePatientData(note);
+    public void updatePatientWithId(@RequestBody Note note) throws Exception {
+        Optional<Note> optionalNote = noteService.findNote(note.getIdNote());
+        if (optionalNote.isPresent()) {
+            Note foundNote = optionalNote.get();
+            noteService.updatePatientData(note);
+        } else {
+            throw  new Exception("Note non trouvée");
+        }
     }
 }
