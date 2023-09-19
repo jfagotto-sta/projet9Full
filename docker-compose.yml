@@ -88,7 +88,7 @@ services:
     container_name: front
     image: p9gfrontv4
     build:
-      context: ./p9front
+      context: ./front
       dockerfile: Dockerfile
     networks:
       - web-server
